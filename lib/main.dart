@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tetrisgame/game.dart';
 import 'package:tetrisgame/widgets/score.dart';
+
+import 'components/nextblock.dart';
 
 //Run | Debug
 void main() => runApp(MyApp());
@@ -33,29 +36,45 @@ class _TetrisState extends State<Tetris> {
       body: SafeArea(
         child: Column(
           children: [
-            ScoreBar(),
+            const ScoreBar(),
             Expanded(
-              child: Row(
-                children: [
-                  Flexible(
-                    flex:4,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 5, 10),
-                      child: Container(
-                        color: Colors.red,
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(10, 10, 5, 10),
+                        child: Game(),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(5, 10, 10, 10),
-                      child: Container(
-                        color: Colors.pink,
+                    Flexible(
+                      flex: 1,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(5, 10, 10, 10),
+                        child: Column(
+                          children: [
+                            const NextBlock(),
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.indigo[700]),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                'Start',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey[200]),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
